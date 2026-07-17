@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Spice | Fine Dining & Authentic Flavors</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --primary-gold: #c5a059;
+            --dark-gold: #a68549;
+            --bg-dark: #0f0f0f;
+            --bg-light: #1a1a1a;
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; }
+        img { width: 100%; display: block; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .heading-center {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .heading-center span {
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .heading-center h2 {
+            font-size: 3rem;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .heading-center h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--primary-gold);
+            margin: 20px auto;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: var(--transition);
+        }
+
+        nav.sticky {
+            background: rgba(15, 15, 15, 0.95);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--primary-gold); }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary-gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary-gold);
+            color: #000;
+            font-weight: 600;
+            border-radius: 0;
+            transition: var(--transition);
+            border: 1px solid var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--primary-gold);
+        }
+
+        /* --- About Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            border: 1px solid var(--primary-gold);
+            padding: 15px;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        /* --- Menu Section --- */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: 1px solid #333;
+            color: var(--text-white);
+            padding: 10px 25px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #333;
+        }
+
+        .menu-info h3 {
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+        }
+
+        .menu-info p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .menu-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        /* --- Reviews --- */
+        .reviews-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--bg-light);
+            padding: 40px;
+            border: 1px solid #222;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .review-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-10px);
+        }
+
+        .stars {
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        .review-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .review-card h4 {
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* --- Reservation Form --- */
+        .reservation-box {
+            background: var(--bg-light);
+            padding: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid var(--primary-gold);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            background: transparent;
+            border: 1px solid #333;
+            color: white;
+            margin-bottom: 20px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary-gold);
+        }
+
+        textarea { height: 120px; }
+
+        /* --- Contact --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .contact-item i {
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+        }
+
+        .map-container {
+            filter: grayscale(1) invert(1);
+            height: 350px;
+            width: 100%;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #0a0a0a;
+            padding: 60px 0 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        .footer-socials {
+            margin-bottom: 30px;
+        }
+
+        .footer-socials a {
+            font-size: 1.2rem;
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover { color: var(--primary-gold); }
+
+        .copyright {
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            margin-top: 40px;
+        }
+
+        /* --- Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+            .menu-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                border-bottom: 1px solid var(--primary-gold);
+            }
+
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .form-grid { grid-template-columns: 1fr; }
+            .heading-center h2 { font-size: 2.2rem; }
+            .reservation-box { padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="container">
+            <a href="#" class="logo">ROYAL<span>SPICE</span></a>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#reservations">Reservations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="mob-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h4 class="reveal">Welcome to Excellence</h4>
+            <h1 class="reveal">The Art of Fine Dining</h1>
+            <a href="#reservations" class="btn reveal">Book Your Experience</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="section-padding" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="https://images.unsplash.com/photo-1550966842-2849a22027e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior">
+                </div>
+                <div class="about-text reveal">
+                    <span style="color: var(--primary-gold); letter-spacing: 2px;">SINCE 1998</span>
+                    <h2>A Culinary Journey Through Spices</h2>
+                    <p>At Royal Spice, we don't just serve food; we craft memories. Our kitchen is a laboratory of tradition, where ancient recipes meet modern culinary techniques.</p>
+                    <p>Every plate is a masterpiece, using sustainably sourced ingredients and spices imported directly from the heart of the East. Whether it's a romantic dinner or a family celebration, we provide an atmosphere of unparalleled elegance.</p>
+                    <a href="#menu" class="btn" style="margin-top: 20px;">Explore Our Story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section-padding" id="menu" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="heading-center reveal">
+                <span>Specialties</span>
+                <h2>Our Signature Menu</h2>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Left Column -->
+                <div class="reveal">
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3>Truffle Butter Chicken</h3>
+                            <p>Tandoori chicken in a rich truffle-infused tomato silk.</p>
+                        </div>
+                        <span class="menu-price">$28</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3>Saffron Lamb Rogan Josh</h3>
+                            <p>Slow-cooked lamb with Kashmiri spices and pure saffron.</p>
+                        </div>
+                        <span class="menu-price">$32</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3>Gold Leaf Paneer Tikka</h3>
+                            <p>Hand-crafted cottage cheese with edible gold garnish.</p>
+                        </div>
+                        <span class="menu-price">$24</span>
+                    </div>
+                </div>
+                <!-- Right Column -->
+                <div class="reveal">
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3>Royal Lobster Biryani</h3>
+                            <p>Aged basmati rice with fresh lobster and 24-spice blend.</p>
+                        </div>
+                        <span class="menu-price">$45</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3>Crispy Okra Chaat</h3>
+                            <p>Thinly sliced okra with mango dust and pomegranate.</p>
+                        </div>
+                        <span class="menu-price">$16</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-info">
+                            <h3>Cardamom Pistachio Kulfi</h3>
+                            <p>Traditional frozen dessert with organic pistachios.</p>
+                        </div>
+                        <span class="menu-price">$14</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section-padding" id="gallery">
+        <div class="container">
+            <div class="heading-center reveal">
+                <span>Visuals</span>
+                <h2>A Glimpse of Royalty</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 1"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 2"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 3"></div>
+                <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Gallery 4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section-padding" id="reviews" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="heading-center reveal">
+                <span>Testimonials</span>
+                <h2>What Our Guests Say</h2>
+            </div>
+            <div class="reviews-container">
+                <div class="review-card reveal">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"The Truffle Butter Chicken is revolutionary. The service was impeccable and the atmosphere was truly royal."</p>
+                    <h4>— Sophia Loren</h4>
+                </div>
+                <div class="review-card reveal">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"Undoubtedly the best fine dining experience in the city. Every spice tells a different story. Highly recommended."</p>
+                    <h4>— Marc Thompson</h4>
+                </div>
+                <div class="review-card reveal">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>"From the cocktails to the desserts, everything was perfection. A must-visit for anyone who loves authentic flavors."</p>
+                    <h4>— Elena Rodriguez</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="section-padding" id="reservations">
+        <div class="container">
+            <div class="reservation-box reveal">
+                <div class="heading-center">
+                    <span>Booking</span>
+                    <h2>Reserve A Table</h2>
+                </div>
+                <form id="res-form">
+                    <div class="form-grid">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                        <input type="date" required>
+                        <select required>
+                            <option value="">Time Slot</option>
+                            <option>6:00 PM</option>
+                            <option>7:30 PM</option>
+                            <option>9:00 PM</option>
+                            <option>10:30 PM</option>
+                        </select>
+                        <select required>
+                            <option value="">Guests</option>
+                            <option>1 Person</option>
+                            <option>2 People</option>
+                            <option>4 People</option>
+                            <option>6+ People</option>
+                        </select>
+                        <input type="tel" placeholder="Phone Number">
+                    </div>
+                    <textarea placeholder="Special Requests (Optional)"></textarea>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn">Confirm Reservation</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding" id="contact" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="reveal">
+                    <div class="heading-center" style="text-align: left;">
+                        <span>Location</span>
+                        <h2>Visit Us</h2>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Spice Garden Avenue,<br>Culinary District, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>Mon - Sun: 5:00 PM - 11:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal">
+                    <iframe class="map-container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937371434!2d-73.98731968459391!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480293%3A0x5117f706139355b6!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1647432000000!5m2!1sen!2sus" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h2 class="logo" style="margin-bottom: 20px;">ROYAL<span>SPICE</span></h2>
+            <div class="footer-socials">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-tripadvisor"></i></a>
+            </div>
+            <p>Crafting the finest flavors since 1998.</p>
+            <p class="copyright">&copy; 2023 Royal Spice Restaurant Group. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 1. Sticky Navigation & Scroll Effects
+        const nav = document.querySelector('#main-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('sticky');
+            } else {
+                nav.classList.remove('sticky');
+            }
+            reveal();
+        });
+
+        // 2. Mobile Menu Toggle
+        const mobBtn = document.querySelector('#mob-menu-btn');
+        const navMenu = document.querySelector('#nav-menu');
+
+        mobBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobBtn.querySelector('i').classList.add('fa-bars');
+                mobBtn.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // 3. Reveal Elements on Scroll
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        // Initial check
+        reveal();
+
+        // 4. Reservation Form Submission
+        const resForm = document.querySelector('#res-form');
+        resForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = resForm.querySelector('button');
+            btn.innerHTML = "Processing...";
+            btn.style.opacity = "0.7";
+            
+            // Simulate API call
+            setTimeout(() => {
+                alert("Thank you! Your reservation request at Royal Spice has been received. We will contact you shortly to confirm.");
+                resForm.reset();
+                btn.innerHTML = "Confirm Reservation";
+                btn.style.opacity = "1";
+            }, 1500);
+        });
+
+        // 5. Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
